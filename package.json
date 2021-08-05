@@ -1,0 +1,32 @@
+{
+  "name": "estudos-alura-orm-com-nodejs-api-com-sequelize-e-mysql",
+  "version": "1.0.0",
+  "description": "Projeto de estudos para acompanhar curso Alura - ORM com NodeJS: API com Sequelize e MySQL",
+  "main": "./api/index.js",
+  "scripts": {
+    "start": "nodemon ./api/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cecez/estudos-alura-orm-com-nodejs-api-com-sequelize-e-mysql.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cecez/estudos-alura-orm-com-nodejs-api-com-sequelize-e-mysql/issues"
+  },
+  "homepage": "https://github.com/cecez/estudos-alura-orm-com-nodejs-api-com-sequelize-e-mysql#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mysql2": "^2.3.0",
+    "path": "^0.12.7",
+    "sequelize": "^6.6.5",
+    "sequelize-cli": "^6.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
