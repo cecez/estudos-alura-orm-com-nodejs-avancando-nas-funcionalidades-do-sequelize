@@ -20,6 +20,7 @@
   "homepage": "https://github.com/cecez/estudos-alura-orm-com-nodejs-api-com-sequelize-e-mysql#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "mysql2": "^2.3.0",
     "path": "^0.12.7",

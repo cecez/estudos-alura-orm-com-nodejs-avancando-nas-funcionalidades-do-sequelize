@@ -9,6 +9,6 @@ app.get('/teste', (requisicao, resposta) => {
     resposta.status(200).send({ mensagem: 'retorno da API' })
 })
 
-app.listen(3000, () => { console.log('Servidor funcionando...' )})
+app.listen(process.env.NODEJS_LOCAL_PORT, () => { console.log('Servidor funcionando...' )})
 
 module.exports = app
