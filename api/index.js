@@ -1,14 +1,11 @@
-const express = require('express')
-const bodyParser = require('body-parser')
+require('dotenv').config();
 
-const app = express()
+const express = require('express');
+const routes = require('./routes');
+const app = express();
 
-app.use(bodyParser.json())
+routes(app);
 
-app.get('/teste', (requisicao, resposta) => {
-    resposta.status(200).send({ mensagem: 'retorno da API' })
-})
-
-app.listen(process.env.NODEJS_LOCAL_PORT, () => { console.log('Servidor funcionando...' )})
+app.listen(process.env.NODEJS_LOCAL_PORT, () => { console.log('Servidor funcionando na porta: ' + process.env.NODEJS_LOCAL_PORT )})
 
 module.exports = app
