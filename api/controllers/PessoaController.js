@@ -13,6 +13,18 @@ class PessoaController
         }
     }
 
+    static async delete(req, res)
+    {
+        const { id } = req.params;
+        try {
+            const pessoa = await database.Pessoas.findByPk(id);
+            await pessoa.destroy();
+            res.status(200).json({"mensagem": `Registro ${id} excluído com sucesso.`});
+        } catch (erro) {
+            res.status(500).json(erro.message);
+        }
+    }
+
     static async index(req, res)
     {
         try {

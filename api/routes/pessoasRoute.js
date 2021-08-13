@@ -7,6 +7,8 @@ router.get('/pessoas', PessoaController.index);
 router.get('/pessoas/:id', PessoaController.show);
 router.post('/pessoas', PessoaController.create);
 router.put('/pessoas/:id', PessoaController.update);
+router.delete('/pessoas/:id', PessoaController.delete);
+
 
 
 module.exports = router;
