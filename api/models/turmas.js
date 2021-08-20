@@ -11,8 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Turmas.hasMany(models.Matriculas, { foreignKey: 'turma_id' });
-      Turmas.belongsTo(models.Pessoas);
-      Turmas.belongsTo(models.Niveis);
+      Turmas.belongsTo(models.Pessoas, { foreignKey: 'docente_id' });
+      Turmas.belongsTo(models.Niveis, { foreignKey: 'nivel_id' });
     }
   };
   Turmas.init({
