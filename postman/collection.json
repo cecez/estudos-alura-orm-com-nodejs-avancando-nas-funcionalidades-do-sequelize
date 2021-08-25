@@ -1,0 +1,286 @@
+{
+	"info": {
+		"_postman_id": "13457c48-49e0-43a5-9d28-f47a34b2a80e",
+		"name": "Estudos Alura - ORM com NodeJS: API com Sequelize e MySQL",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/pessoas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/pessoas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"pessoas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/niveis",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/niveis",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"niveis"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/turmas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/turmas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"turmas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/pessoas/:estudanteId/matriculas/:matriculaId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/pessoas/1/matriculas/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"pessoas",
+						"1",
+						"matriculas",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/pessoas/:id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/pessoas/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"pessoas",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/pessoas",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"Nominho 2\",\n    \"email\": \"email2@email.com\",\n    \"ativo\": true,\n    \"role\": \"estudante\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/pessoas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"pessoas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/pessoas/:estudanteId/matriculas",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"status\": \"confirmado\",\n    \"turma_id\": 4\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/pessoas/1/matriculas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"pessoas",
+						"1",
+						"matriculas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/pessoas/:id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"Nominho novinho 2\",\n    \"ativo\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/pessoas/8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"pessoas",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/pessoas/:estudanteId/matriculas/:matriculaId",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"status\": \"cancelado\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/pessoas/1/matriculas/7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"pessoas",
+						"1",
+						"matriculas",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/pessoas/:id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"Nominho novinho 2\",\n    \"ativo\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/pessoas/7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"pessoas",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/pessoas/:estudanteId/matriculas/:matriculaId",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/pessoas/1/matriculas/7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"pessoas",
+						"1",
+						"matriculas",
+						"7"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
