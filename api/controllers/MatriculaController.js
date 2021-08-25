@@ -4,10 +4,11 @@ class PessoaController
 {
     static async create(req, res)
     {
-        const dadosNovaPessoa = req.body;
+        const { estudanteId } = req.params;
+        const dadosNovaMatricula = { ...req.body, estudante_id: Number(estudanteId) };
         try {
-            const novaPessoa = await database.Pessoas.create(dadosNovaPessoa);
-            res.status(200).json(novaPessoa);
+            const novaMatricula = await database.Matriculas.create(dadosNovaMatricula);
+            res.status(200).json(novaMatricula);
         } catch (erro) {
             res.status(500).json(erro.message);
         }
@@ -15,11 +16,13 @@ class PessoaController
 
     static async delete(req, res)
     {
-        const { id } = req.params;
+        const { estudanteId, matriculaId } = req.params;
         try {
-            const pessoa = await database.Pessoas.findByPk(id);
-            await pessoa.destroy();
-            res.status(200).json({"mensagem": `Registro ${id} excluído com sucesso.`});
+            await database.Matriculas.destroy({ where: {
+                id: Number(matriculaId),
+                estudante_id: Number(estudanteId)
+            }});
+            res.status(200).json({"mensagem": `Registro ${matriculaId} excluído com sucesso.`});
         } catch (erro) {
             res.status(500).json(erro.message);
         }
@@ -53,16 +56,19 @@ class PessoaController
 
     static async update(req, res) 
     {
-        const { id } = req.params;
+        const { estudanteId, matriculaId } = req.params;
         const dadosParaAtualizar = req.body;
 
         try {
-            const pessoa = await database.Pessoas.findByPk(id);
-            pessoa.set(dadosParaAtualizar);
-            const pessoaAtualizada = await pessoa.save();
-
-            res.status(200).json(pessoaAtualizada);
-
+            await database.Matriculas.update(dadosParaAtualizar, {
+                where: {
+                    id: Number(matriculaId),
+                    estudante_id: Number(estudanteId)
+                }
+            });
+            
+            const matriculaAtualizada = await database.Matriculas.findByPk(matriculaId);
+            res.status(200).json(matriculaAtualizada);
         } catch (erro) {
             res.status(500).json(erro.message);
         }
