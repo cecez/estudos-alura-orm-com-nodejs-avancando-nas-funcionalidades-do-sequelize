@@ -6,4 +6,10 @@ docker-compose build
 docker-compose up
 docker exec -it CONTAINER_ID /bin/bash
 
+# preparando o ambiente do projeto
+npm install
+npx sequelize-cli db:migrate
+npx sequelize-cli db:seed:all
+npm start
+
 ```
