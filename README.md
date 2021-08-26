@@ -1,4 +1,4 @@
-# Projeto de estudos para acompanhar curso Alura - ORM com NodeJS: API com Sequelize e MySQL
+# Projeto de estudos para acompanhar curso Alura - ORM com NodeJS: Avançando nas funcionalidades do Sequelize
 
 ```
 # build e execução do contêiner com NodeJS, npm e MySQL
