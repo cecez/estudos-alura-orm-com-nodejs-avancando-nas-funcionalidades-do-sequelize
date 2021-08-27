@@ -12,4 +12,13 @@ npx sequelize-cli db:migrate
 npx sequelize-cli db:seed:all
 npm start
 
+# ver pacotes desatualizados
+npm outdated
+
+# criar migração
+npx sequelize-cli migration:generate --name add-deletedAt-columns
+
+# executar migração
+npx sequelize-cli db:migrate
+
 ```
