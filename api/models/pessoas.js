@@ -14,15 +14,22 @@ module.exports = (sequelize, DataTypes) => {
       Pessoas.hasMany(models.Matriculas, { foreignKey: 'estudante_id' });
     }
   };
-  Pessoas.init({
-    nome: DataTypes.STRING,
-    ativo: DataTypes.BOOLEAN,
-    email: DataTypes.STRING,
-    role: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'Pessoas',
-    paranoid: true,
-  });
+  Pessoas.init(
+    {
+      nome: DataTypes.STRING,
+      ativo: DataTypes.BOOLEAN,
+      email: DataTypes.STRING,
+      role: DataTypes.STRING
+    }, 
+    {
+      defaultScope: { where: { ativo: true } },
+      scopes: {
+        todas: { where: {} }
+      },
+      sequelize,
+      modelName: 'Pessoas',
+      paranoid: true,
+    }
+  );
   return Pessoas;
 };

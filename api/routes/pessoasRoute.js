@@ -6,7 +6,8 @@ const router = Router();
 
 router
     .delete('/pessoas/:id', PessoaController.delete)
-    .get('/pessoas', PessoaController.index)
+    .get('/pessoas', PessoaController.indexActives)
+    .get('/pessoas/todas', PessoaController.index)
     .get('/pessoas/:id', PessoaController.show)
     .post('/pessoas', PessoaController.create)
     .post('/pessoas/:id/restaura', PessoaController.restore)
