@@ -28,13 +28,15 @@ class PessoaController
         }
     }
 
-    static async index(req, res)
+    static async index(requisicao, resposta)
     {
+        const { estudanteId } = requisicao.params;
         try {
-            const todasPessoas = await database.Pessoas.findAll();
-            res.status(200).json(todasPessoas);
+            const estudante = await database.Pessoas.findOne({ where: { id: Number(estudanteId) } });
+            const matriculas = await estudante.getMatriculasConfirmadas();
+            resposta.status(200).json(matriculas);
         } catch (erro) {
-            res.status(500).json(erro.message);
+            resposta.status(500).json(erro.message);
         }
     }
 
