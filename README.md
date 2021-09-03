@@ -1,6 +1,6 @@
 # Projeto de estudos para acompanhar curso Alura - ORM com NodeJS: Avançando nas funcionalidades do Sequelize
 
-```
+```bash
 # build e execução do contêiner com NodeJS, npm e MySQL
 docker-compose build
 docker-compose up
@@ -20,5 +20,6 @@ npx sequelize-cli migration:generate --name add-deletedAt-columns
 
 # executar migração
 npx sequelize-cli db:migrate
-
 ```
+
+- Documentação Sequelize: https://sequelize.org/master/
