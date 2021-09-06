@@ -1,12 +1,33 @@
-const database = require('../models')
+const database = require('../models');
+const { Op } = require('sequelize');
 
 class TurmaController {
-  static async pegaTodasAsTurmas(req, res){
+
+  static montaFiltros(consulta) {
+    const where = {};
+
+    return where;
+  }
+
+  static async pegaTodasAsTurmas(requisicao, resposta){
     try {
-      const todasAsTurmas = await database.Turmas.findAll()
-      return res.status(200).json(todasAsTurmas)  
+      const filtros = TurmaController.montaFiltros(requisicao.query);
+      console.log(filtros);
+
+      const { data_inicial, data_final } = requisicao.query;
+      const where = {};
+
+      // filtro para data de início da turma
+      data_inicial || data_final ? where.data_inicio = {} : null;
+      data_inicial ? where.data_inicio[Op.gte] = data_inicial : null;
+      data_final ? where.data_inicio[Op.lte] = data_final : null;
+
+      console.log(where);
+
+      const todasAsTurmas = await database.Turmas.findAll({ where });
+      return resposta.status(200).json(todasAsTurmas)  
     } catch (error) {
-      return res.status(500).json(error.message)
+      return resposta.status(500).json(error.message)
     }
   }
 
