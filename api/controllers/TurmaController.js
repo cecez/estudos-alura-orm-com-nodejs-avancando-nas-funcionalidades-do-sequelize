@@ -72,6 +72,26 @@ class TurmaController {
     }
   }
 
+  static async indexMatriculas(requisicao, resposta) 
+  {
+    const { turmaId } = requisicao.params;
+    try 
+    {
+      const matriculas = await database.Matriculas.findAndCountAll({
+        where: {
+          turma_id: Number(turmaId),
+          status: 'confirmado'
+        },
+        limit: 20,
+        order: [['estudante_id', 'DESC']]
+      });
+
+      return resposta.status(200).json(matriculas);
+    } catch (erro) {
+      return resposta.status(500).json(erro.message);
+    }
+  }
+
   static async restore(requisicao, resposta)
     {
         const { id } = requisicao.params;
