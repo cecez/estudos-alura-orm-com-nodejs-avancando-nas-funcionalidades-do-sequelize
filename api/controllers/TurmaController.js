@@ -1,5 +1,5 @@
 const database = require('../models');
-const { Op } = require('sequelize');
+const { Op, Sequelize } = require('sequelize');
 
 class TurmaController {
 
@@ -89,6 +89,27 @@ class TurmaController {
       return resposta.status(200).json(matriculas);
     } catch (erro) {
       return resposta.status(500).json(erro.message);
+    }
+  }
+
+  static async indexTurmasLotadas(requisicao, resposta)
+  {
+    const quantidadeDeAlunosParaSeConsiderarTurmaLotada = 2;
+
+    try 
+    {
+
+      const turmasLotadas = await database.Matriculas.findAndCountAll({
+        where: { status: 'confirmado' },
+        attributes: ['turma_id'],
+        group: ['turma_id'],
+        having: Sequelize.literal(`COUNT(turma_id) >= ${quantidadeDeAlunosParaSeConsiderarTurmaLotada}`)
+      })
+
+      resposta.status(200).json(turmasLotadas.count);
+
+    } catch (erro) {
+      resposta.status(500).json(erro.message);
     }
   }
 
