@@ -10,6 +10,7 @@ router
     .get('/pessoas/todas', PessoaController.index)
     .get('/pessoas/:id', PessoaController.show)
     .post('/pessoas', PessoaController.create)
+    .post('/pessoas/:estudanteId/cancela', PessoaController.cancela)
     .post('/pessoas/:id/restaura', PessoaController.restore)
     .put('/pessoas/:id', PessoaController.update);
 

@@ -2,6 +2,31 @@ const database = require('../models');
 
 class PessoaController
 {
+
+    static async cancela(requisicao, resposta) 
+    {
+        const { estudanteId } = requisicao.params;
+
+        try {
+
+            database.sequelize.transaction(async transacao => {
+                await database.Pessoas.update(
+                    { ativo: false }, 
+                    { where: { id: Number(estudanteId) }},
+                    { transaction: transacao });
+
+                await database.Matriculas.update(
+                    { status: 'cancelado' }, 
+                    { where: { estudante_id: Number(estudanteId) }},
+                    { transaction: transacao });
+            });
+
+            resposta.status(200).json({ mensagem: "Estudante e matrículas canceladas com sucesso."});
+        } catch (erro) {
+            resposta.status(500).json(erro.message);
+        }
+    }
+
     static async create(req, res)
     {
         const dadosNovaPessoa = req.body;
