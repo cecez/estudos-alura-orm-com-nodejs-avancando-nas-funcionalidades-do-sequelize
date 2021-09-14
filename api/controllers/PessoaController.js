@@ -1,4 +1,6 @@
-const database = require('../models');
+// const database = require('../models');
+const { PessoaService } = require('../services');
+const pessoaService = new PessoaService();
 
 class PessoaController
 {
@@ -63,7 +65,7 @@ class PessoaController
     static async indexActives(req, res)
     {
         try {
-            const todasPessoasAtivas = await database.Pessoas.findAll();
+            const todasPessoasAtivas = await pessoaService.pegaTodosOsRegistros();
             res.status(200).json(todasPessoasAtivas);
         } catch (erro) {
             res.status(500).json(erro.message);
