@@ -10,19 +10,7 @@ class PessoaController
         const { estudanteId } = requisicao.params;
 
         try {
-
-            database.sequelize.transaction(async transacao => {
-                await database.Pessoas.update(
-                    { ativo: false }, 
-                    { where: { id: Number(estudanteId) }},
-                    { transaction: transacao });
-
-                await database.Matriculas.update(
-                    { status: 'cancelado' }, 
-                    { where: { estudante_id: Number(estudanteId) }},
-                    { transaction: transacao });
-            });
-
+            await pessoaService.cancelaEstudanteEMatriculas(estudanteId);
             resposta.status(200).json({ mensagem: "Estudante e matrículas canceladas com sucesso."});
         } catch (erro) {
             resposta.status(500).json(erro.message);
@@ -55,7 +43,7 @@ class PessoaController
     static async index(req, res)
     {
         try {
-            const todasPessoas = await database.Pessoas.scope('todas').findAll();
+            const todasPessoas = await pessoaService.pegaTodosOsRegistros();
             res.status(200).json(todasPessoas);
         } catch (erro) {
             res.status(500).json(erro.message);
@@ -65,7 +53,7 @@ class PessoaController
     static async indexActives(req, res)
     {
         try {
-            const todasPessoasAtivas = await pessoaService.pegaTodosOsRegistros();
+            const todasPessoasAtivas = await pessoaService.pegaRegistrosAtivos();
             res.status(200).json(todasPessoasAtivas);
         } catch (erro) {
             res.status(500).json(erro.message);
