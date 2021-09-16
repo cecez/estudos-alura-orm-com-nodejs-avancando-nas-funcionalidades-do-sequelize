@@ -1,13 +1,15 @@
 const database = require('../models');
+const { MatriculaService } = require('../services');
+const matriculaService = new MatriculaService();
 
-class PessoaController
+class MatriculaController
 {
     static async create(req, res)
     {
         const { estudanteId } = req.params;
         const dadosNovaMatricula = { ...req.body, estudante_id: Number(estudanteId) };
         try {
-            const novaMatricula = await database.Matriculas.create(dadosNovaMatricula);
+            const novaMatricula = await matriculaService.create(dadosNovaMatricula);
             res.status(200).json(novaMatricula);
         } catch (erro) {
             res.status(500).json(erro.message);
@@ -18,10 +20,7 @@ class PessoaController
     {
         const { estudanteId, matriculaId } = req.params;
         try {
-            await database.Matriculas.destroy({ where: {
-                id: Number(matriculaId),
-                estudante_id: Number(estudanteId)
-            }});
+            await matriculaService.exclui(estudanteId, matriculaId);
             res.status(200).json({"mensagem": `Registro ${matriculaId} excluído com sucesso.`});
         } catch (erro) {
             res.status(500).json(erro.message);
@@ -44,7 +43,7 @@ class PessoaController
     {
         const { id } = requisicao.params;
         try {
-            await database.Matriculas.restore({ where: { id: Number(id) } });
+            await matriculaService.restore(id);
             return resposta.status(200).json({ mensagem: `Matrícula ${id} restaurada com sucesso.` });
         } catch (erro) {
             resposta.status(500).json(erro.message);
@@ -88,4 +87,4 @@ class PessoaController
     }
 }
 
-module.exports = PessoaController
+module.exports = MatriculaController

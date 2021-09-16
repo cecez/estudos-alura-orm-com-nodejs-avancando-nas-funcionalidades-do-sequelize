@@ -14,8 +14,20 @@ class Service {
         return database[this.nomeDoModelo].update(dadosAtualizados, { where: { ...where } }, transacao);
     }
 
+    async create(dados) {
+        return database[this.nomeDoModelo].create(dados);
+    }
+
+    async destroy(where) {
+        return database[this.nomeDoModelo].destroy(where);
+    }
+
     async pegaTodosOsRegistros() {
         return database[this.nomeDoModelo].findAll();
+    }
+
+    async restore(id) {
+        await database[this.nomeDoModelo].restore({ where: { id: Number(id) } });
     }
 
 }
