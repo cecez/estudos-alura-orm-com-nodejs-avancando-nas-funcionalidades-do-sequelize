@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "13457c48-49e0-43a5-9d28-f47a34b2a80e",
-		"name": "Estudos Alura - ORM com NodeJS: API com Sequelize e MySQL",
+		"_postman_id": "50c3d164-6380-43ab-9ef4-1f4fc2d2232d",
+		"name": "Estudos Alura - ORM com NodeJS: Avançando nas funcionalidades do Sequelize",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -19,6 +19,26 @@
 					"port": "3000",
 					"path": [
 						"pessoas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/pessoas/ativas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/pessoas/ativas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"pessoas",
+						"ativas"
 					]
 				}
 			},
@@ -57,6 +77,97 @@
 					"port": "3000",
 					"path": [
 						"turmas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/turmas/:id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/turmas/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"turmas",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/turmas/:id/matriculas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/turmas/1/matriculas/confirmadas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"turmas",
+						"1",
+						"matriculas",
+						"confirmadas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/turmas?filtros",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/turmas?data_inicial=2020-07-01&data_final=2021-01-01",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"turmas"
+					],
+					"query": [
+						{
+							"key": "data_inicial",
+							"value": "2020-07-01"
+						},
+						{
+							"key": "data_final",
+							"value": "2021-01-01"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/turmas/lotadas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/turmas/lotadas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"turmas",
+						"lotadas"
 					]
 				}
 			},
@@ -111,7 +222,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"nome\": \"Nominho 2\",\n    \"email\": \"email2@email.com\",\n    \"ativo\": true,\n    \"role\": \"estudante\"\n}",
+					"raw": "{\n    \"nome\": \"Nom\",\n    \"email\": \"email@email.com\",\n    \"ativo\": true,\n    \"role\": \"estudante\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -157,6 +268,130 @@
 						"pessoas",
 						"1",
 						"matriculas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/estudante/:estudanteId/matriculas",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/estudante/2/matriculas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"estudante",
+						"2",
+						"matriculas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/pessoas/:id/restaura",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/pessoas/1/restaura",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"pessoas",
+						"1",
+						"restaura"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/pessoas/:id/matriculas/restaura",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/pessoas/7/matriculas/restaura",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"pessoas",
+						"7",
+						"matriculas",
+						"restaura"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/pessoas/:id/cancela",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/pessoas/1/cancela",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"pessoas",
+						"1",
+						"cancela"
 					]
 				}
 			},
@@ -229,7 +464,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"nome\": \"Nominho novinho 2\",\n    \"ativo\": true\n}",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -237,7 +472,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/pessoas/7",
+					"raw": "http://localhost:3000/pessoas/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -245,7 +480,7 @@
 					"port": "3000",
 					"path": [
 						"pessoas",
-						"7"
+						"1"
 					]
 				}
 			},
