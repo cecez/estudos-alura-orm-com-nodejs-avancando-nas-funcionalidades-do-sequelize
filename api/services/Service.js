@@ -26,6 +26,14 @@ class Service {
         return database[this.nomeDoModelo].findAll();
     }
 
+    async pegaUmRegistroPorId(id) {
+        return await this.pegaUmRegistroPorWhere({ where: { id: id } });
+    }
+    
+    async pegaUmRegistroPorWhere(where) {
+        return await database[this.nomeDoModelo].findOne(where);
+    }
+
     async restore(id) {
         await database[this.nomeDoModelo].restore({ where: { id: Number(id) } });
     }

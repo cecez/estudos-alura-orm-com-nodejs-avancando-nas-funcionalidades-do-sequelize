@@ -1,4 +1,3 @@
-const database = require('../models');
 const { MatriculaService } = require('../services');
 const matriculaService = new MatriculaService();
 
@@ -31,8 +30,7 @@ class MatriculaController
     {
         const { estudanteId } = requisicao.params;
         try {
-            const estudante = await database.Pessoas.findOne({ where: { id: Number(estudanteId) } });
-            const matriculas = await estudante.getMatriculasConfirmadas();
+            const matriculas = await matriculaService.pegaMatriculasConfirmadasDoEstudante(estudanteId);
             resposta.status(200).json(matriculas);
         } catch (erro) {
             resposta.status(500).json(erro.message);
@@ -54,12 +52,7 @@ class MatriculaController
     {
         const { estudanteId, matriculaId } = req.params;
         try {
-            const matricula = await database.Matriculas.findOne({
-                where: {
-                    id: Number(matriculaId),
-                    estudante_id: Number(estudanteId)
-                }
-            });
+            const matricula = await matriculaService.pegaUmRegistro(estudanteId, matriculaId); 
             res.status(200).json(matricula);
         } catch (erro) {
             res.status(500).json(erro.message);
@@ -72,14 +65,8 @@ class MatriculaController
         const dadosParaAtualizar = req.body;
 
         try {
-            await database.Matriculas.update(dadosParaAtualizar, {
-                where: {
-                    id: Number(matriculaId),
-                    estudante_id: Number(estudanteId)
-                }
-            });
-            
-            const matriculaAtualizada = await database.Matriculas.findByPk(matriculaId);
+            await matriculaService.atualizaRegistros(estudanteId, matriculaId, dadosParaAtualizar);
+            const matriculaAtualizada = await matriculaService.pegaUmRegistroPorId(matriculaId);
             res.status(200).json(matriculaAtualizada);
         } catch (erro) {
             res.status(500).json(erro.message);
